@@ -1,0 +1,14 @@
+services:
+  caddy:
+    restart: always
+    build:
+      context: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    develop:
+      watch:
+        - path: ./src
+          target: ./src
+          action: sync+restart
